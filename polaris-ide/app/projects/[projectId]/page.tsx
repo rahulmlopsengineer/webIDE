@@ -420,10 +420,10 @@ export default function ProjectEditorPage({
           />
         )}
 
-        {/* Right panel */}
+        {/* Right panel (hidden on small screens) */}
         <div className={cn(
-          "flex flex-col flex-shrink-0 border-border overflow-hidden transition-all",
-          activeView === 'preview' ? "flex-1 border-l-0" : "w-[300px] border-l"
+          "hidden md:flex flex-col flex-shrink-0 border-border overflow-hidden transition-all",
+          activeView === 'preview' ? "md:flex-1 md:border-l-0" : "md:w-[300px] md:border-l"
         )}>
           {rightPanel === 'chat' && (
             <ChatPanel fileContext={activeFile?.content} fileName={activeFile?.name} />

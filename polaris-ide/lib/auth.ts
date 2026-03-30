@@ -17,35 +17,11 @@
 import NextAuth, { type NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-
-// ── 1. Edge-safe config (no DB imports) ──────────────────────
-export const authConfig: NextAuthConfig = {
-  providers: [
-    Google({
-      clientId:     process.env.AUTH_GOOGLE_ID!,
-      clientSecret: process.env.AUTH_GOOGLE_SECRET!,
-    }),
-    GitHub({
-      clientId:     process.env.AUTH_GITHUB_ID!,
-      clientSecret: process.env.AUTH_GITHUB_SECRET!,
-    }),
-  ],
-  pages: {
-    signIn: "/auth/signin",
-  },
-  callbacks: {
-    // JWT-only session check — no DB call needed in middleware
-    authorized({ auth: session }) {
-      return !!session?.user;
-    },
-  },
-  session: { strategy: "jwt" },
-  secret:  process.env.AUTH_SECRET,
-};
+import { authConfig } from "@/lib/authConfig";
 
 // ── 2. Full NextAuth (Node.js only — has DB callbacks) ────────
-// Lazy-import Mongoose models so this module is never bundled
-// into the Edge Runtime when imported from middleware.
+// Lazy-import Mongoose models so the heavy callbacks only run
+// when this module is imported on the server (not in Edge).
 export const {
   handlers,
   auth,

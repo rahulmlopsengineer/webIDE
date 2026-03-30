@@ -19,7 +19,7 @@ export function ActivityBar({ onToggleSidebar, sidebarOpen }: ActivityBarProps) 
   ];
 
   return (
-    <div className="w-[46px] bg-bg-1 border-r border-border flex flex-col items-center py-2 gap-1 flex-shrink-0">
+    <div className="hidden md:flex w-[46px] bg-bg-1 border-r border-border flex flex-col items-center py-2 gap-1 flex-shrink-0">
       {items.map(({ icon: Icon, label, active, onClick }) => (
         <button
           key={label}

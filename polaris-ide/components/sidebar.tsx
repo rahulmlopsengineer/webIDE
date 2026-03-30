@@ -13,7 +13,7 @@ interface SidebarProps {
 
 export function Sidebar({ tree, activeFile, onOpenFile }: SidebarProps) {
   return (
-    <div className="w-[230px] bg-bg-1 border-r border-border flex flex-col flex-shrink-0 overflow-hidden">
+    <div className="hidden md:flex w-[230px] bg-bg-1 border-r border-border flex flex-col flex-shrink-0 overflow-hidden">
       {/* Header */}
       <div className="h-[38px] flex items-center justify-between px-3 border-b border-border flex-shrink-0">
         <span className="text-[10px] uppercase tracking-widest text-text-3 font-medium">
